@@ -1,0 +1,88 @@
+//Angus MacDonald 24/9/18 Tutor: Karen MacKay
+//Players class for Pontoon game
+
+package Pontoon;
+
+public class Players {
+	
+	private String name; //Sets variable for player name
+	
+	private Card[] hand = new Card[5]; //Sets how many cards a player can have in a round.
+	
+	private int cardHand;  //Variable for number of cards in the hand 
+	
+	public Players(String playerName)
+	{
+		this.name = playerName;  //Sets player name
+
+	}
+	
+	public boolean addCard(Card addedCard)
+	{
+		if(this.cardHand == 5) //Checks to see if the user hand is at 5 cards and prints message.
+		{
+			System.out.println("You've reached the card limit of 5 cards.  This means you have won "+this.name );
+			System.exit(1);
+		}
+		
+		this.hand[this.cardHand]=addedCard;
+		this.cardHand++;
+		return(this.getHandSum()<=21);
+	}
+	
+	public int getHandSum()
+	{
+		int handSum = 0;
+		int cardNum = 0;
+		int numAces = 0;
+		
+		for (int c=0;c<this.cardHand;c++) //Checks the values of the hand and adds them together.
+		{
+			cardNum = this.hand[c].getNumber();
+			
+			if (cardNum == 1) 
+			{
+				numAces++;
+				handSum +=11;
+			}
+			else if (cardNum > 10)
+			{
+				handSum += 10;
+			}
+			else 
+			{
+				handSum += cardNum;
+			}
+		}
+		
+
+		while (handSum >21 && numAces >0)	//Checks for aces and sets them to a value of 1 when hand total is 21 or over, else they remain valued at 11.
+		{
+			handSum -=10;
+			numAces--;
+		}
+		
+		return handSum;  //Returns the amount in a players hand
+		
+	}
+	
+	
+	public void printHand(boolean showFirstCard)
+	{
+		System.out.printf("%s's cards: \n", this.name); //prints out first card of dealer and hides the second.
+		for (int c=0;c<this.cardHand;c++)
+		{
+			if (c == 0 && !showFirstCard)
+			{
+				System.out.println("  [hidden]");
+			}
+			else
+			{
+				System.out.printf(" %s\n", this.hand[c].toString());
+			}
+		}
+	}
+	
+
+
+}
