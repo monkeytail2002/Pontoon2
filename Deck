@@ -1,0 +1,96 @@
+//Angus MacDonald 24/9/18 Tutor: Karen MacKay
+//Deck class for Pontoon game
+
+package Pontoon;
+
+import java.util.Random;
+
+public class Deck {
+	
+	private Card myCards[]; //Array of cards
+	
+	private int cardNumber; //Variable for number of cards in a deck.
+	
+	//@Overload
+	public Deck()
+	{
+		this(1, false);  //defines the deck.
+	}
+	
+	public Deck(int deckNumber, boolean deck)
+	{
+		this.cardNumber = deckNumber*52;  //Sets the number of cards at 52
+		this.myCards = new Card[this.cardNumber];  //Sets array value
+		
+		int c=0;
+		
+		//For each deck, add new card.
+		for(int d=0;d<deckNumber;d++)
+		{
+			for (int s = 0;s<4;s++)
+			{
+				for (int n = 1; n <= 13; n++)
+				{
+					//add new card to deck
+					this.myCards[c] = new Card(Suit.values()[s],n);
+					c++;
+				}
+			}
+		}
+		if(deck)
+		{
+			this.shuffle(); //shuffles the deck of cards
+			
+		}
+	}
+	
+	public void shuffle()
+	{
+		
+		Random rng = new Random(); //Creates the random number generator
+		
+	
+		Card temp; //Temp variable for swap
+		
+		int j;
+		for (int i = 0; i < this.cardNumber; i++)
+		{
+			j = rng.nextInt(this.cardNumber);
+			
+			
+			//swaps the cards around in the shuffle
+			temp = this.myCards[i];
+			this.myCards[i] = this.myCards[j];
+			this.myCards[j] = temp;
+			
+		}
+	}
+	
+	public Card dealNextCard()  //deals next card for the game.
+	{
+		Card top = this.myCards[0];
+		
+		for (int c = 1; c<this.cardNumber; c++)
+		{
+			this.myCards[c-1] = this.myCards[c];  //shifts any cards left in the deck, left
+		}
+		
+		this.myCards[this.cardNumber-1] = null;
+		this.cardNumber--;
+				
+		return top;
+		
+	}
+	
+	public void printDeck(int numToPrint)
+	{
+		for (int c = 0; c<numToPrint;c++) 
+		{
+			System.out.printf("% 3d/%d %s\n", c+1,this.cardNumber,this.myCards[c].toString()); //Prints the top card in the deck.
+		}
+		System.out.printf("\t\t[%d other]", this.cardNumber-numToPrint);
+		
+	}
+	
+
+}
