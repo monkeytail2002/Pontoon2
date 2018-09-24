@@ -1,0 +1,63 @@
+//Angus MacDonald 24/9/18 Tutor: Karen MacKay
+//Card class for Pontoon game
+
+package Pontoon;
+
+public class Card {
+	
+	private Suit mySuit; //Calls in the Suit enum and stores it as a variable
+	
+	private int cardNumber;  //Private variable for card faces.
+	
+	public Card(Suit cardSuit, int cNumber)
+	{
+		this.mySuit = cardSuit;  //construct to create the card.
+		if(cNumber >= 1 && cNumber <=13)
+		{
+		this.cardNumber = cNumber;  //Sets value of card to this variable
+		}
+	}
+	
+	public int getNumber()
+	{
+		return cardNumber; //Returns the number of the card.
+	}
+	
+	@Override
+	public String toString()
+	{
+		String numStr = "Error";  //Sets the default to state error message if there is an issue
+		switch(this.cardNumber) //switch to set the faces of the cards to that of a deck of cards.
+		{
+		case 1: numStr = "Ace";
+		break;
+		case 2: numStr = "2";
+		break;
+		case 3: numStr = "3";
+		break;
+		case 4: numStr = "4";
+		break;
+		case 5: numStr = "5";
+		break;
+		case 6: numStr = "6";
+		break;
+		case 7: numStr = "7";
+		break;
+		case 8: numStr = "8";
+		break;
+		case 9: numStr = "9";
+		break;
+		case 10: numStr = "10";
+		break;
+		case 11: numStr = "Jack";
+		break;
+		case 12: numStr = "Queen";
+		break;
+		case 13: numStr = "King";
+		break;
+		}
+		return numStr + " of " + mySuit.toString();  //returns a message that should read: Ace of Hearts.
+	}
+
+
+}
