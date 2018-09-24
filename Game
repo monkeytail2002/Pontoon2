@@ -1,0 +1,93 @@
+//Angus MacDonald 24/9/18 Tutor: Karen MacKay
+//Main class for Pontoon game
+
+package Pontoon;
+
+import java.util.Scanner;  //brings in the scanner for user interaction with the game.
+
+public class Game {
+
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		Deck theDeck = new Deck(1,true);
+		
+		Players player = new Players("Player");  //Sets player name
+		Players dealer = new Players("Dealer");  //Sets dealer name
+		
+		
+		player.addCard(theDeck.dealNextCard());  //deals first player card
+		dealer.addCard(theDeck.dealNextCard());  //deals first dealer card
+		player.addCard(theDeck.dealNextCard());  //deals second player card
+		dealer.addCard(theDeck.dealNextCard());  //deals second dealer card
+		
+		
+	
+		System.out.println("Cards are dealt\n");  //prints out initial hand dealt.
+		player.printHand(true);
+		dealer.printHand(false);
+		System.out.println("\n");
+		
+		
+		
+		boolean playerDone = false; //flags for when player is done with hitting.
+		boolean dealerDone = false; //flags for when dealer is done with hitting.
+		String ans;
+		
+		while (!playerDone || !dealerDone)  //Checks to see if the player is hitting or sticking.
+		{
+			if(!playerDone) 
+			{
+				System.out.println("Hit or Stick? (Enter H or S)");
+				ans = sc.next();
+				System.out.println();
+				
+				if(ans.compareToIgnoreCase("H")==0)
+				{
+					playerDone = !player.addCard(theDeck.dealNextCard());
+					player.printHand(true);
+				}
+				else
+				{
+					playerDone = true;
+				}
+			}
+			
+			
+			if(!dealerDone)
+			{
+				if (dealer.getHandSum()<17)
+				{
+					System.out.println("The Dealer hits\n");
+					dealerDone = !dealer.addCard(theDeck.dealNextCard());
+					dealer.printHand(false);
+				}
+				else
+				{
+					System.out.println("The Dealer sticks\n");
+					dealerDone=true;
+				}
+			}
+			
+			System.out.println();
+			
+		}
+		
+        sc.close();
+		
+		player.printHand(true);
+		dealer.printHand(true);
+		
+		int mySum = player.getHandSum();
+		int dealerSum = dealer.getHandSum();
+		
+		if (mySum > dealerSum && mySum <=21 || mySum <= 21 && dealerSum >21)  //Checks total of hand to see if player wins or loses.
+		{
+			System.out.println("You win");
+		}
+		else
+		{
+			System.out.println("You lose");
+		}
+	}
+}
