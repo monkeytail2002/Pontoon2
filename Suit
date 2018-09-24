@@ -1,0 +1,14 @@
+//Angus MacDonald 24/9/18 Tutor: Karen MacKay
+//Suit enum for Pontoon game
+
+
+package Pontoon;
+
+public enum Suit
+{
+	//Creates a set of constants.  In this case the suits of a deck of cards.
+	Hearts,
+	Diamonds,
+	Clubs,
+	Spades,
+}
