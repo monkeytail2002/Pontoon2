@@ -3,7 +3,7 @@
  * 08/11/18 
  * Tutor: Karen MacKay
  * Betting class for Pontoon game
- * version 1
+ * version 1.2
  */
  
  package pontoon;
@@ -12,18 +12,19 @@ import java.util.Scanner;
 
 public class Bet {
 	
-	private static double bet;
-	private static double cash;
+	private  double cash, bet;
 	
 	
 	public Bet()
 	{
-		bet = wagerBet();
 	
 	}
 	
-	public static double wagerBet()
+	public void wagerBet()
 	{
+		/**
+		 * This method sets a pot of 100 to bet with, the input method for how much is bet by the player, and returns that information to the class.
+		 */
 		cash = 100;
 		Scanner in = new Scanner(System.in);
 		System.out.println("You have £100 to wager.");
@@ -31,16 +32,28 @@ public class Bet {
 		double bet = in.nextDouble();
 		cash = cash - bet;
 		System.out.println("You wagered "+bet+".  Now you have £"+cash+" left");
-		return bet;
+		this.bet = bet;
+
 	}
 	
 
-	public static void rewardBet() {
-	
-		cash = cash+(bet*2);
-		System.out.println("you now have £"+cash);
-		
+	public void rewardBet()
+	{
+		/**
+		 * This method takes the bet on a winning hand and doubles it.  It then adds that to the remaining pot total and advises the user what they have left.
+		 */
+		double winBet = (this.bet*2);
+		double pot = cash+winBet;
+		System.out.println("you've won £"+winBet);
+		System.out.println("Your total pot is now £"+pot);
 	}
 	
+	public void loseBet()
+	{
+		/**
+		 * This method is if the hand is lost.  It tells the player that they lost the bet and what the remaining pot is.
+		 */
+		System.out.println("You lost £"+bet+" this round.  You're remaining pot is £"+cash);
+	}
 
 }
