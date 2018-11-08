@@ -27,6 +27,7 @@ public class Game {
 		player.printHand(true);
 		dealer.printHand(false);
 		System.out.println("\n");
+		Bet.wagerBet();
 		
 		
 		
@@ -81,13 +82,15 @@ public class Game {
 		int mySum = player.getHandSum();
 		int dealerSum = dealer.getHandSum();
 		
-		if (mySum > dealerSum && mySum <=21 || mySum <= 21 && dealerSum >21)  //Checks total of hand to see if player wins or loses.
+				if (mySum > dealerSum && mySum <=21 || mySum <= 21 && dealerSum >21)  //Checks total of hand to see if player wins or loses.
 		{
 			System.out.println("You win");
+			Bet.rewardBet();
 		}
 		else
 		{
 			System.out.println("You lose");
+			Bet.rewardBet();
 		}
 	}
 }
