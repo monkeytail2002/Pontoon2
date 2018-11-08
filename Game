@@ -1,5 +1,10 @@
-//Angus MacDonald 24/9/18 Tutor: Karen MacKay
-//Main class for Pontoon game
+/**
+ * Angus MacDonald 
+ * 08/11/18 
+ * Tutor: Karen MacKay
+ * Main class for Pontoon game
+ * version 2
+ */
 
 package Pontoon;
 
