@@ -2,7 +2,7 @@
 //Suit enum for Pontoon game
 
 
-package Pontoon;
+package pontoon;
 
 public enum Suit
 {
