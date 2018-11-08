@@ -6,7 +6,7 @@
  * version 2
  */
 
-package Pontoon;
+package pontoon;
 
 import java.util.Scanner;  //brings in the scanner for user interaction with the game.
 
@@ -16,6 +16,8 @@ public class Game {
 		
 		Scanner sc = new Scanner(System.in);
 		Deck theDeck = new Deck(1,true);
+		Bet bet = new Bet();
+
 		
 		Players player = new Players("Player");  //Sets player name
 		Players dealer = new Players("Dealer");  //Sets dealer name
@@ -32,7 +34,8 @@ public class Game {
 		player.printHand(true);
 		dealer.printHand(false);
 		System.out.println("\n");
-		Bet.wagerBet();
+		bet.wagerBet();  // This calls in the wager from the Bet class
+		
 		
 		
 		
@@ -90,12 +93,13 @@ public class Game {
 				if (mySum > dealerSum && mySum <=21 || mySum <= 21 && dealerSum >21)  //Checks total of hand to see if player wins or loses.
 		{
 			System.out.println("You win");
-			Bet.rewardBet();
+			bet.rewardBet();  //Displays winnings
+
 		}
 		else
 		{
 			System.out.println("You lose");
-			Bet.rewardBet();
+			bet.loseBet();  //Displays losses
 		}
 	}
 }
