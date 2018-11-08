@@ -1,0 +1,47 @@
+/**
+ * Angus MacDonald 
+ * 08/11/18 
+ * Tutor: Karen MacKay
+ * Betting class for Pontoon game
+ * version 1
+ */
+ 
+ package Pontoon;
+
+import java.util.Scanner;
+
+public class Bet {
+	
+	private static double bet;
+	private static double cash;
+	
+	
+	public Bet()
+	{
+
+		bet = wagerBet();
+	
+	}
+	
+	public static double wagerBet()
+	{
+		cash = 100;
+		Scanner in = new Scanner(System.in);
+		System.out.println("You have £100 to wager.");
+		System.out.println("How much do you want to bet?");
+		double bet = in.nextDouble();
+		cash = cash - bet;
+		System.out.println("You wagered "+bet+".  Now you have £"+cash+" left");
+		return bet;
+	}
+	
+
+	public static void rewardBet() {
+	
+		cash = cash+(bet*2);
+		System.out.println("you now have £"+cash);
+		
+	}
+	
+
+}
