@@ -1,7 +1,7 @@
 //Angus MacDonald 24/9/18 Tutor: Karen MacKay
 //Deck class for Pontoon game
 
-package Pontoon;
+package pontoon;
 
 import java.util.Random;
 
